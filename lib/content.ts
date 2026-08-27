@@ -1,0 +1,128 @@
+// All facts below are sourced from the business plan, competitor analysis
+// and storage options research prepared by Keystone Property Group
+// (24 August 2026) — nothing here is invented. Figures marked "indicative"
+// or "planning" are launch estimates, not confirmed live rates.
+
+export const site = {
+  name: "The Grahams",
+  tagline: "A private waterfront property at Clarence Point",
+  address: "49 Sunset Boulevard, Clarence Point TAS 7270",
+  region: "Tamar River, Tasmania",
+};
+
+export const overview = {
+  landSize: "4,452 m²",
+  builtArea: "110 m²",
+  positioning:
+    "A private waterfront property at Clarence Point with room for the whole family across two separate homes — more space than a boutique cottage, without the price tag of a luxury estate.",
+};
+
+export const dwellings = [
+  {
+    slug: "main-residence",
+    name: "Main residence",
+    blurb: "3 bedrooms, 1 bathroom, living area with a wood heater, and a kitchen/dining space with water views.",
+    features: [
+      "3 bedrooms, main with built-in robes",
+      "1 bathroom",
+      "Living area with wood heater",
+      "Combined kitchen and dining with water views",
+    ],
+  },
+  {
+    slug: "secondary-dwelling",
+    name: "Secondary dwelling",
+    blurb:
+      "Self-contained with 1 bedroom, kitchenette and living area, plus two flexible rooms usable as extra bedrooms, an office, or storage.",
+    features: [
+      "1 bedroom, self-contained",
+      "Kitchenette and living area",
+      "Two flexible extra rooms",
+    ],
+  },
+];
+
+export const propertyFeatures = [
+  "4,452 m² waterfront block on the Tamar River",
+  "Two separate dwellings on one title",
+  "Double carport (2 covered bays)",
+  "4m × 6m workshop/shed",
+  "Multiple storage and utility rooms",
+];
+
+// Launch rate card — indicative, to be confirmed once the property has
+// live bookings and review data (per the business plan, Section 5).
+export const rates = [
+  {
+    season: "Peak",
+    when: "mid-Dec–Jan, Easter",
+    whole: "$430–$480",
+    secondary: "$200–$220",
+    minStay: "3 nights (whole) / 2 nights (secondary)",
+  },
+  {
+    season: "High",
+    when: "Feb–Mar, Oct–Nov long weekends",
+    whole: "$370–$400",
+    secondary: "$175–$190",
+    minStay: "2 nights",
+  },
+  {
+    season: "Shoulder",
+    when: "Apr–May, Sep",
+    whole: "$300–$330",
+    secondary: "$150–$160",
+    minStay: "2 nights (whole) / 1 night (secondary)",
+  },
+  {
+    season: "Low / Winter",
+    when: "Jun–Aug",
+    whole: "$260–$290",
+    secondary: "$130–$140",
+    minStay: "1 night",
+  },
+];
+
+export const ratesNote =
+  "Rates above are the nightly tariff only — a cleaning fee (typically $120–$200) applies per stay. Whole-property rate covers both dwellings; the secondary dwelling can also be booked on its own.";
+
+export const targetGuests = [
+  {
+    title: "Groups & multi-generational getaways",
+    blurb:
+      "Families and friend groups of 6–8 booking the whole property for long weekends and school-holiday stays, spread across two separate living areas.",
+  },
+  {
+    title: "Couples & small families",
+    blurb:
+      "The self-contained secondary dwelling on its own, for couples or small families wanting water frontage without the whole-property price.",
+  },
+];
+
+export const nearby = {
+  townsAndDistance: [
+    { name: "Beauty Point", distance: "~10 min drive" },
+    { name: "Launceston", distance: "~47 min drive" },
+    { name: "Legana", distance: "~25 min drive" },
+  ],
+  storage: {
+    name: "Store It Here (Legana Self Storage)",
+    detail:
+      "The closest off-site option for guests arriving with a boat, caravan or trailer — open-air storage from $85/month, about 25 minutes away.",
+    phone: "(03) 6330 3342",
+    email: "admin@storeitherelegana.com.au",
+  },
+};
+
+export const managedBy = {
+  name: "Keystone Property Group",
+  note: "Bookings, cleaning turnaround and guest communication are managed centrally by Keystone Property Group.",
+};
+
+// No guest-facing contact email/phone or booking platform links exist yet
+// for this property — confirm these with Chanelle before launch. Left as
+// TODO rather than invented.
+export const contact = {
+  email: "TODO@example.com",
+  phone: "TODO",
+};

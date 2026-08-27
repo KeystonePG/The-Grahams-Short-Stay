@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  /* Tamar River waterfront palette — tide blue, timber sand, ember accent */
+  --color-sand-50: #faf7f2;
+  --color-sand-100: #f1ead9;
+  --color-sand-200: #e2d3b4;
+
+  --color-tide-400: #4a8fa3;
+  --color-tide-500: #2c6e82;
+  --color-tide-700: #1c4a58;
+  --color-tide-900: #12313c;
+
+  --color-ember-400: #e08a4f;
+  --color-ember-500: #d1712f;
+  --color-ember-600: #b25a21;
+
+  --color-gum-500: #7c9070;
+
+  --color-ink-900: #1e2422;
+  --color-ink-700: #4a504c;
+
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-work-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --tracking-wide-plus: 0.18em;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-sand-50);
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-ember-400);
+    color: var(--color-sand-50);
+  }
+}
+
+@layer components {
+  .eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: var(--tracking-wide-plus);
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--color-ember-600);
+  }
+
+  /* Placeholder block for imagery we don't have real photos for yet. */
+  .photo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-sand-200);
+    color: var(--color-ink-700);
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
