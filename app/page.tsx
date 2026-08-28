@@ -24,14 +24,24 @@ const dwellingPhotos: Record<string, string> = {
   "secondary-dwelling": "/images/property/image17.jpg",
 };
 
-const galleryPhotos = [
-  { src: "/images/property/image10.jpg", alt: "Enclosed sunroom looking over the Tamar River", big: true },
-  { src: "/images/property/image6.jpg", alt: "Kitchen in the main residence" },
-  { src: "/images/property/image20.jpg", alt: "Living area with water views" },
-  { src: "/images/property/image14.jpg", alt: "Bedroom in the main residence" },
-  { src: "/images/property/image9.jpg", alt: "Lounge room with recliners and water views" },
-  { src: "/images/property/image16.jpg", alt: "Bedroom in the secondary dwelling" },
-];
+// Split by which dwelling each photo actually shows — the listing itself
+// doesn't caption rooms, so this is a best-effort match based on room style
+// (the secondary dwelling only has two clearly-identifiable photos; the
+// main residence has far more, reflecting its larger size).
+const galleryPhotos: Record<string, { src: string; alt: string; big?: boolean }[]> = {
+  "main-residence": [
+    { src: "/images/property/image10.jpg", alt: "Enclosed sunroom looking over the Tamar River", big: true },
+    { src: "/images/property/image6.jpg", alt: "Kitchen in the main residence" },
+    { src: "/images/property/image20.jpg", alt: "Living area with water views" },
+    { src: "/images/property/image14.jpg", alt: "Bedroom in the main residence" },
+    { src: "/images/property/image9.jpg", alt: "Lounge room with recliners and water views" },
+    { src: "/images/property/image8.jpg", alt: "Dining area with water views" },
+  ],
+  "secondary-dwelling": [
+    { src: "/images/property/image17.jpg", alt: "Kitchenette and living area in the secondary dwelling", big: true },
+    { src: "/images/property/image16.jpg", alt: "Bedroom in the secondary dwelling" },
+  ],
+};
 
 export default function Home() {
   return (
@@ -45,7 +55,9 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900 via-charcoal-900/20 to-transparent" />
         <div className="relative max-w-2xl px-6 pb-16 sm:px-10 sm:pb-24">
-          <p className="eyebrow text-brass-400">{site.address}</p>
+          <p className="eyebrow inline-block bg-charcoal-900 px-3 py-1.5 text-brass-300">
+            {site.address}
+          </p>
           <h1 className="mt-4 font-display text-5xl leading-tight text-paper-50 sm:text-6xl">
             {site.name}
           </h1>
@@ -107,20 +119,62 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Gallery — asymmetric collage grid */}
+      {/* Rates — rate sheet, not a card grid */}
+      <section id="rates" className="border-t border-paper-200 px-6 py-14 sm:px-10">
+        <div className="mx-auto max-w-3xl">
+          <p className="eyebrow text-center">Launch rates</p>
+          <h2 className="mt-3 text-center font-display text-3xl text-ink-900">Seasonal rate card</h2>
+          <div className="mt-8 divide-y-2 divide-paper-200 border-y-2 border-charcoal-900">
+            {rates.map((r) => (
+              <div key={r.season} className="flex flex-col gap-3 py-6 sm:flex-row sm:items-baseline sm:justify-between">
+                <div>
+                  <p className="font-display text-xl text-ink-900">{r.season}</p>
+                  <p className="text-xs text-ink-700/70">{r.when}</p>
+                </div>
+                <div className="flex flex-wrap gap-x-8 gap-y-1 text-sm sm:justify-end">
+                  <span>
+                    <span className="font-display text-lg text-timber-500">{r.whole}</span>
+                    <span className="text-ink-700"> /night whole property</span>
+                  </span>
+                  <span>
+                    <span className="font-display text-lg text-timber-500">{r.secondary}</span>
+                    <span className="text-ink-700"> /night secondary dwelling</span>
+                  </span>
+                </div>
+                <p className="text-xs text-ink-700/70 sm:basis-full sm:text-right">{r.minStay}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-center text-sm text-ink-700/70">{ratesNote}</p>
+          <div className="mt-10 text-center">
+            <Link href="/book" className="btn-primary">
+              Enquire to book
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery — one collage per dwelling */}
       <section className="border-t border-paper-200 px-6 py-14 sm:px-10">
         <div className="mx-auto max-w-5xl">
           <p className="eyebrow">A closer look</p>
           <h2 className="mt-3 font-display text-3xl text-ink-900">Life on the water</h2>
-          <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-4">
-            {galleryPhotos.map((p) => (
-              <div
-                key={p.src}
-                className={`photo-frame aspect-square ${
-                  p.big ? "col-span-2 row-span-2 aspect-square sm:aspect-auto" : ""
-                }`}
-              >
-                <img src={p.src} alt={p.alt} />
+          <div className="mt-10 space-y-14">
+            {dwellings.map((d) => (
+              <div key={d.slug}>
+                <h3 className="font-display text-xl text-timber-500">{d.name}</h3>
+                <div className="mt-4 grid grid-cols-2 gap-5 sm:grid-cols-4">
+                  {galleryPhotos[d.slug]?.map((p) => (
+                    <div
+                      key={p.src}
+                      className={`photo-frame aspect-square ${
+                        p.big ? "col-span-2 row-span-2 aspect-square sm:aspect-auto" : ""
+                      }`}
+                    >
+                      <img src={p.src} alt={p.alt} />
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -154,41 +208,6 @@ export default function Home() {
                 <p className="mt-3 text-ink-700">{g.blurb}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Rates — rate sheet, not a card grid */}
-      <section id="rates" className="border-t border-paper-200 px-6 py-14 sm:px-10">
-        <div className="mx-auto max-w-3xl">
-          <p className="eyebrow text-center">Launch rates</p>
-          <h2 className="mt-3 text-center font-display text-3xl text-ink-900">Seasonal rate card</h2>
-          <div className="mt-8 divide-y-2 divide-paper-200 border-y-2 border-charcoal-900">
-            {rates.map((r) => (
-              <div key={r.season} className="flex flex-col gap-3 py-6 sm:flex-row sm:items-baseline sm:justify-between">
-                <div>
-                  <p className="font-display text-xl text-ink-900">{r.season}</p>
-                  <p className="text-xs text-ink-700/70">{r.when}</p>
-                </div>
-                <div className="flex flex-wrap gap-x-8 gap-y-1 text-sm sm:justify-end">
-                  <span>
-                    <span className="font-display text-lg text-timber-500">{r.whole}</span>
-                    <span className="text-ink-700"> /night whole property</span>
-                  </span>
-                  <span>
-                    <span className="font-display text-lg text-timber-500">{r.secondary}</span>
-                    <span className="text-ink-700"> /night secondary dwelling</span>
-                  </span>
-                </div>
-                <p className="text-xs text-ink-700/70 sm:basis-full sm:text-right">{r.minStay}</p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-6 text-center text-sm text-ink-700/70">{ratesNote}</p>
-          <div className="mt-10 text-center">
-            <Link href="/book" className="btn-primary">
-              Enquire to book
-            </Link>
           </div>
         </div>
       </section>
