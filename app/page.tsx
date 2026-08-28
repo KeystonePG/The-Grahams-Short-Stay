@@ -1,10 +1,7 @@
 import Link from "next/link";
 import Weather from "@/components/Weather";
 import {
-  attractions,
   dwellings,
-  events,
-  foodAndWine,
   nearby,
   overview,
   propertyFeatures,
@@ -82,10 +79,26 @@ export default function Home() {
         </p>
       </section>
 
+      {/* Who it's for — split with divider */}
+      <section className="border-t border-paper-200 px-6 py-14 sm:px-10">
+        <div className="mx-auto max-w-4xl">
+          <p className="eyebrow">Who stays here</p>
+          <h2 className="mt-3 font-display text-3xl text-ink-900">Groups, families and couples</h2>
+          <div className="mt-8 grid gap-10 sm:grid-cols-2 sm:divide-x sm:divide-paper-200">
+            {targetGuests.map((g) => (
+              <div key={g.title} className="sm:first:pr-10 sm:last:pl-10">
+                <h3 className="font-display text-xl text-timber-500">{g.title}</h3>
+                <p className="mt-3 text-ink-700">{g.blurb}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Dwellings — zig-zag editorial rows */}
       <section id="dwellings" className="border-t border-paper-200 px-6 py-14 sm:px-10">
         <div className="mx-auto max-w-5xl">
-          <p className="eyebrow">Two homes, one title</p>
+          <p className="eyebrow">Where you'll stay</p>
           <h2 className="mt-3 font-display text-3xl text-ink-900">
             The main residence &amp; the secondary dwelling
           </h2>
@@ -121,8 +134,7 @@ export default function Home() {
       {/* Rates — rate sheet, not a card grid */}
       <section id="rates" className="border-t border-paper-200 px-6 py-14 sm:px-10">
         <div className="mx-auto max-w-3xl">
-          <p className="eyebrow text-center">Launch rates</p>
-          <h2 className="mt-3 text-center font-display text-3xl text-ink-900">Seasonal rate card</h2>
+          <h2 className="mt-3 text-center font-display text-3xl text-moss-500">Rates</h2>
           <div className="mt-8 divide-y-2 divide-paper-200 border-y-2 border-pine-900">
             {rates.map((r) => (
               <div key={r.season} className="flex flex-col gap-3 py-6 sm:flex-row sm:items-baseline sm:justify-between">
@@ -195,101 +207,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Who it's for — split with divider */}
-      <section className="border-t border-paper-200 px-6 py-14 sm:px-10">
-        <div className="mx-auto max-w-4xl">
-          <p className="eyebrow">Who stays here</p>
-          <h2 className="mt-3 font-display text-3xl text-ink-900">Groups, families and couples</h2>
-          <div className="mt-8 grid gap-10 sm:grid-cols-2 sm:divide-x sm:divide-paper-200">
-            {targetGuests.map((g) => (
-              <div key={g.title} className="sm:first:pr-10 sm:last:pl-10">
-                <h3 className="font-display text-xl text-timber-500">{g.title}</h3>
-                <p className="mt-3 text-ink-700">{g.blurb}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials — honest placeholder, no invented reviews */}
       <section className="border-t border-paper-200 bg-pine-900 px-6 py-14 text-center text-paper-100 sm:px-10">
         <p className="eyebrow text-brass-300">Guest reviews</p>
         <p className="mx-auto mt-6 max-w-lg font-display text-2xl leading-relaxed text-paper-50">
           &ldquo;{reviewsStatus}&rdquo;
         </p>
-      </section>
-
-      {/* Nearby attractions */}
-      <section className="border-t border-paper-200 px-6 py-14 sm:px-10">
-        <div className="mx-auto max-w-4xl">
-          <p className="eyebrow text-center">Beyond the property</p>
-          <h2 className="mt-3 text-center font-display text-3xl text-ink-900">
-            Exploring the Tamar Valley
-          </h2>
-          <div className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-            {attractions.map((a) => (
-              <div key={a.name}>
-                {a.photo && (
-                  <div className="photo-frame mb-4 aspect-video">
-                    <img src={a.photo} alt={a.name} />
-                  </div>
-                )}
-                <div className="border-l-2 border-brass-500 pl-5">
-                  <p className="font-display text-lg text-ink-900">{a.name}</p>
-                  <p className="eyebrow mt-1 text-ink-700/70">{a.distance}</p>
-                  <p className="mt-2 text-sm text-ink-700">{a.blurb}</p>
-                  {a.photoCredit && (
-                    <p className="mt-2 text-xs text-ink-700/50">Photo: {a.photoCredit}</p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Food & wine */}
-      <section className="border-t border-paper-200 bg-paper-100 px-6 py-14 sm:px-10">
-        <div className="mx-auto max-w-4xl">
-          <p className="eyebrow text-center">Food &amp; wine</p>
-          <h2 className="mt-3 text-center font-display text-3xl text-ink-900">
-            The Tamar Valley wine trail
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-center text-sm text-ink-700">
-            Cellar doors line both sides of the Tamar River between Launceston and George Town — best explored by car.
-          </p>
-          <div className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-            {foodAndWine.map((f) => (
-              <div key={f.name} className="border-l-2 border-moss-500 pl-5">
-                <p className="font-display text-lg text-ink-900">{f.name}</p>
-                <p className="mt-2 text-sm text-ink-700">{f.blurb}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Local events */}
-      <section className="border-t border-paper-200 px-6 py-14 sm:px-10">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="eyebrow">What's on</p>
-          <h2 className="mt-3 font-display text-3xl text-ink-900">Local events</h2>
-          <div className="mt-8 space-y-6">
-            {events.map((e) => (
-              <a
-                key={e.name}
-                href={e.url}
-                target="_blank"
-                rel="noreferrer"
-                className="block border border-paper-200 p-6 text-left transition hover:border-brass-500"
-              >
-                <p className="eyebrow text-brass-600">{e.when}</p>
-                <p className="mt-1 font-display text-xl text-ink-900">{e.name}</p>
-                <p className="mt-2 text-sm text-ink-700">{e.blurb}</p>
-              </a>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* Location */}

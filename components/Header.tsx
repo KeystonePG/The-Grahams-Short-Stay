@@ -52,19 +52,28 @@ export default function Header() {
             <span className="eyebrow text-brass-300">Clarence Point</span>
           </span>
         </Link>
-        <nav className="hidden gap-6 lg:flex">
-          <a href="#dwellings" className="eyebrow text-paper-100 hover:text-brass-300">
+        <nav className="hidden gap-5 lg:flex">
+          <Link href="/#dwellings" className="eyebrow text-paper-100 hover:text-brass-300">
             The Property
-          </a>
-          <a href="#rates" className="eyebrow text-paper-100 hover:text-brass-300">
+          </Link>
+          <Link href="/#rates" className="eyebrow text-paper-100 hover:text-brass-300">
             Rates
-          </a>
-          <a href="#location" className="eyebrow text-paper-100 hover:text-brass-300">
+          </Link>
+          <Link href="/explore" className="eyebrow text-paper-100 hover:text-brass-300">
+            Beyond the Property
+          </Link>
+          <Link href="/food-and-wine" className="eyebrow text-paper-100 hover:text-brass-300">
+            Food &amp; Wine
+          </Link>
+          <Link href="/events" className="eyebrow text-paper-100 hover:text-brass-300">
+            Events
+          </Link>
+          <Link href="/#location" className="eyebrow text-paper-100 hover:text-brass-300">
             Location
-          </a>
-          <a href="#contact" className="eyebrow text-paper-100 hover:text-brass-300">
+          </Link>
+          <Link href="/#contact" className="eyebrow text-paper-100 hover:text-brass-300">
             Contact
-          </a>
+          </Link>
         </nav>
         <Link
           href="/book"
