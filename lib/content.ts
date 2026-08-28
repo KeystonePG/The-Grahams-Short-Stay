@@ -118,7 +118,13 @@ export const nearby = {
 // area, sourced from tamarvalley.com.au and general web search (28 August
 // 2026) — not from the business plan documents. Travel times are quoted
 // from those sources, not independently measured.
-export const attractions = [
+export const attractions: {
+  name: string;
+  distance: string;
+  blurb: string;
+  photo?: string;
+  photoCredit?: string;
+}[] = [
   {
     name: "Garden Island lookout",
     distance: "At Clarence Point",
@@ -141,11 +147,15 @@ export const attractions = [
     distance: "~20–40 min drive",
     blurb:
       "Coastal heath, wetlands and free-ranging wildlife (kangaroos, wallabies, wombats), with the West Head Lookout an easy 270 m walk from the car park.",
+    photo: "/images/nearby/narawntapu-kangaroo.jpg",
+    photoCredit: "Steven Penton, CC BY 2.0",
   },
   {
     name: "Cataract Gorge, Launceston",
     distance: "~47 min drive",
     blurb: "One of Tasmania's best-known natural landmarks, with walking trails, a chairlift and swimming pool.",
+    photo: "/images/nearby/cataract-gorge.jpg",
+    photoCredit: "Photnart, CC BY-SA 3.0",
   },
 ];
 

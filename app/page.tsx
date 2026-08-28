@@ -210,10 +210,20 @@ export default function Home() {
           </h2>
           <div className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2">
             {attractions.map((a) => (
-              <div key={a.name} className="border-l-2 border-brass-500 pl-5">
-                <p className="font-display text-lg text-ink-900">{a.name}</p>
-                <p className="eyebrow mt-1 text-ink-700/70">{a.distance}</p>
-                <p className="mt-2 text-sm text-ink-700">{a.blurb}</p>
+              <div key={a.name}>
+                {a.photo && (
+                  <div className="photo-frame mb-4 aspect-video">
+                    <img src={a.photo} alt={a.name} />
+                  </div>
+                )}
+                <div className="border-l-2 border-brass-500 pl-5">
+                  <p className="font-display text-lg text-ink-900">{a.name}</p>
+                  <p className="eyebrow mt-1 text-ink-700/70">{a.distance}</p>
+                  <p className="mt-2 text-sm text-ink-700">{a.blurb}</p>
+                  {a.photoCredit && (
+                    <p className="mt-2 text-xs text-ink-700/50">Photo: {a.photoCredit}</p>
+                  )}
+                </div>
               </div>
             ))}
           </div>
