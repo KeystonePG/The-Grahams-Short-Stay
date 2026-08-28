@@ -47,15 +47,15 @@ export default function Home() {
   return (
     <>
       {/* Hero — full-bleed image, asymmetric text block bottom-left */}
-      <section className="relative flex min-h-[85vh] items-end overflow-hidden bg-charcoal-900">
+      <section className="relative flex min-h-[85vh] items-end overflow-hidden bg-pine-900">
         <img
           src="/images/property/main.jpg"
           alt="Aerial view of the waterfront property on the Tamar River"
           className="absolute inset-0 h-full w-full object-cover opacity-60"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900 via-charcoal-900/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-pine-900 via-pine-900/20 to-transparent" />
         <div className="relative max-w-2xl px-6 pb-16 sm:px-10 sm:pb-24">
-          <p className="eyebrow inline-block bg-charcoal-900 px-3 py-1.5 text-brass-300">
+          <p className="eyebrow inline-block bg-pine-900 px-3 py-1.5 text-brass-300">
             {site.address}
           </p>
           <h1 className="mt-4 font-display text-5xl leading-tight text-paper-50 sm:text-6xl">
@@ -124,7 +124,7 @@ export default function Home() {
         <div className="mx-auto max-w-3xl">
           <p className="eyebrow text-center">Launch rates</p>
           <h2 className="mt-3 text-center font-display text-3xl text-ink-900">Seasonal rate card</h2>
-          <div className="mt-8 divide-y-2 divide-paper-200 border-y-2 border-charcoal-900">
+          <div className="mt-8 divide-y-2 divide-paper-200 border-y-2 border-pine-900">
             {rates.map((r) => (
               <div key={r.season} className="flex flex-col gap-3 py-6 sm:flex-row sm:items-baseline sm:justify-between">
                 <div>
@@ -188,7 +188,7 @@ export default function Home() {
           <h2 className="mt-3 font-display text-3xl text-ink-900">Room to spread out</h2>
           <ul className="mt-10 divide-y divide-paper-200 border-y border-paper-200">
             {propertyFeatures.map((f) => (
-              <li key={f} className="border-l-2 border-brass-500 py-4 pl-6 text-ink-700">
+              <li key={f} className="border-l-2 border-rust-500 py-4 pl-6 text-ink-700">
                 {f}
               </li>
             ))}
@@ -213,8 +213,8 @@ export default function Home() {
       </section>
 
       {/* Testimonials — honest placeholder, no invented reviews */}
-      <section className="border-t border-paper-200 bg-charcoal-900 px-6 py-14 text-center text-paper-100 sm:px-10">
-        <p className="eyebrow text-brass-400">Guest reviews</p>
+      <section className="border-t border-paper-200 bg-pine-900 px-6 py-14 text-center text-paper-100 sm:px-10">
+        <p className="eyebrow text-brass-300">Guest reviews</p>
         <p className="mx-auto mt-6 max-w-lg font-display text-2xl leading-relaxed text-paper-50">
           &ldquo;{reviewsStatus}&rdquo;
         </p>
@@ -261,7 +261,7 @@ export default function Home() {
           </p>
           <div className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2">
             {foodAndWine.map((f) => (
-              <div key={f.name} className="border-l-2 border-brass-500 pl-5">
+              <div key={f.name} className="border-l-2 border-moss-500 pl-5">
                 <p className="font-display text-lg text-ink-900">{f.name}</p>
                 <p className="mt-2 text-sm text-ink-700">{f.blurb}</p>
               </div>

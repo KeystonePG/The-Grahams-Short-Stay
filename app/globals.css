@@ -1,26 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  /* Timber-lodge palette, drawn from the actual pine-panelled interiors and
-     brass fittings in the property photos — deliberately distinct from
-     Constellation Apartments' coastal sand/ocean palette. */
-  --color-paper-50: #f8f4ea;
-  --color-paper-100: #ede0c4;
-  --color-paper-200: #ddc99a;
+  /* Timber-lodge palette, drawn from the actual pine-panelled interiors,
+     brass fittings and surrounding bushland in the property photos —
+     deliberately distinct from Constellation Apartments' coastal
+     sand/ocean palette. Brighter, more saturated pass: forest green
+     replaces flat charcoal as the dark anchor, gold is more vivid, and a
+     copper/rust accent adds a second real hue beyond brown/gold. */
+  --color-paper-50: #fbf7ec;
+  --color-paper-100: #f0e3c4;
+  --color-paper-200: #e0cc98;
 
-  --color-charcoal-700: #40372c;
-  --color-charcoal-900: #221d18;
+  --color-pine-700: #2b4a34;
+  --color-pine-900: #16301f;
 
-  --color-timber-400: #b3814f;
-  --color-timber-500: #8a5a34;
-  --color-timber-700: #5f3c22;
+  --color-timber-400: #c08f52;
+  --color-timber-500: #96602f;
+  --color-timber-700: #63401f;
 
-  --color-brass-300: #e6bb73;
-  --color-brass-400: #c99a52;
-  --color-brass-500: #a9772f;
-  --color-brass-600: #8c5f22;
+  --color-brass-300: #f3c877;
+  --color-brass-400: #e0aa47;
+  --color-brass-500: #c78a24;
+  --color-brass-600: #9c6c1a;
 
-  --color-moss-500: #5c6b45;
+  --color-rust-400: #e0764a;
+  --color-rust-500: #c1522b;
+
+  --color-moss-500: #5e8a4b;
 
   --color-ink-900: #1e2422;
   --color-ink-700: #4a504c;
@@ -45,7 +51,7 @@
 
   ::selection {
     background-color: var(--color-brass-400);
-    color: var(--color-charcoal-900);
+    color: var(--color-pine-900);
   }
 }
 
@@ -95,9 +101,9 @@
 
   .btn-primary {
     display: inline-block;
-    background-color: var(--color-charcoal-900);
+    background-color: var(--color-pine-900);
     color: var(--color-paper-50);
-    border: 1px solid var(--color-brass-500);
+    border: 1px solid var(--color-brass-400);
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: 0.02em;
@@ -106,8 +112,8 @@
   }
 
   .btn-primary:hover {
-    background-color: var(--color-brass-500);
-    color: var(--color-charcoal-900);
+    background-color: var(--color-brass-400);
+    color: var(--color-pine-900);
   }
 }
 

@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="border-t border-brass-500 bg-charcoal-900 px-6 py-16 text-paper-100 sm:px-10"
+      className="border-t border-brass-500 bg-pine-900 px-6 py-16 text-paper-100 sm:px-10"
     >
       <div className="mx-auto flex max-w-5xl flex-col justify-between gap-10 sm:flex-row">
         <div>

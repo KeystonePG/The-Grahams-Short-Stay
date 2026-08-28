@@ -3,7 +3,7 @@ import { site } from "@/lib/content";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-20 border-b border-brass-400 bg-charcoal-700">
+    <header className="sticky top-0 z-20 border-b border-brass-400 bg-pine-700">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-6 sm:px-10">
         <Link href="/" className="flex items-center gap-3">
           <svg
@@ -68,7 +68,7 @@ export default function Header() {
         </nav>
         <Link
           href="/book"
-          className="hidden shrink-0 border border-brass-400 px-5 py-2 text-sm font-medium text-paper-50 transition hover:bg-brass-400 hover:text-charcoal-900 lg:inline-block"
+          className="hidden shrink-0 border border-brass-400 px-5 py-2 text-sm font-medium text-paper-50 transition hover:bg-brass-400 hover:text-pine-900 lg:inline-block"
         >
           Book
         </Link>
