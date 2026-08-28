@@ -149,6 +149,34 @@ export const attractions = [
   },
 ];
 
+// Real, well-known Tamar Valley wineries and restaurants, sourced from
+// general web search (28 August 2026) — not from the business plan
+// documents. The Tamar Valley wine trail runs both sides of the river
+// between Launceston and George Town, so exact drive times from Clarence
+// Point aren't quoted here — best explored by car.
+export const foodAndWine = [
+  {
+    name: "Pipers Brook Vineyard",
+    blurb: "Cool-climate wines, tastings and platters using regional cheese, charcuterie and cured fish.",
+  },
+  {
+    name: "Jansz Tasmania",
+    blurb: "A cellar door beside a lake amid the vines, known for one of Australia's best sparkling wines.",
+  },
+  {
+    name: "Clover Hill",
+    blurb: "Sparkling wine and cheese platters with views over the vineyard.",
+  },
+  {
+    name: "Stoney Rise",
+    blurb: "A relaxed cellar door on the West Tamar, good for spending a whole afternoon over food and wine.",
+  },
+  {
+    name: "Marion's Vineyard",
+    blurb: "Midway up the Tamar Valley, surrounded by redwood forest, with platters from the on-site deli.",
+  },
+];
+
 // No guests have stayed yet — the business plan's own revenue modelling is
 // a launch-year projection, not a track record. Do not add quotes here
 // until real guest reviews exist; this status line should be replaced with
