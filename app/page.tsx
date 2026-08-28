@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Weather from "@/components/Weather";
 import {
   attractions,
   dwellings,
@@ -47,7 +48,10 @@ export default function Home() {
             {site.name}
           </h1>
           <p className="mt-4 max-w-md text-lg text-paper-100">{site.tagline}</p>
-          <Link href="/book" className="btn-primary mt-8 inline-block">
+          <div className="mt-6">
+            <Weather />
+          </div>
+          <Link href="/book" className="btn-primary mt-6 inline-block">
             Enquire to book
           </Link>
         </div>
