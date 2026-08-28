@@ -25,6 +25,12 @@ export default function Header() {
             Contact
           </a>
         </nav>
+        <Link
+          href="/book"
+          className="hidden shrink-0 rounded-full bg-bay-500 px-5 py-2 text-sm font-medium text-sand-50 transition hover:bg-bay-700 lg:inline-block"
+        >
+          Book
+        </Link>
       </div>
     </header>
   );

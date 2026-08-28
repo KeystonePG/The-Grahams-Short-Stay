@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   dwellings,
   nearby,
@@ -8,6 +9,24 @@ import {
   site,
   targetGuests,
 } from "@/lib/content";
+
+// Dwelling and gallery photography below is sourced from the property's 2025
+// sale listing (Peter Lees Real Estate, Launceston) as a temporary stand-in
+// while the property is prepared for guests — swap for fresh photography
+// (and drop the listing's watermark) before the site goes public.
+const dwellingPhotos: Record<string, string> = {
+  "main-residence": "/images/property/image3.jpg",
+  "secondary-dwelling": "/images/property/image17.jpg",
+};
+
+const galleryPhotos = [
+  { src: "/images/property/image10.jpg", alt: "Enclosed sunroom looking over the Tamar River" },
+  { src: "/images/property/image6.jpg", alt: "Kitchen in the main residence" },
+  { src: "/images/property/image20.jpg", alt: "Living area with water views" },
+  { src: "/images/property/image14.jpg", alt: "Bedroom in the main residence" },
+  { src: "/images/property/image9.jpg", alt: "Lounge room with recliners and water views" },
+  { src: "/images/property/image16.jpg", alt: "Bedroom in the secondary dwelling" },
+];
 
 export default function Home() {
   return (
@@ -21,9 +40,14 @@ export default function Home() {
         <p className="mx-auto mt-4 max-w-xl text-lg text-sand-100">
           {site.tagline}
         </p>
-        <div className="photo-placeholder mx-auto mt-10 aspect-video max-w-3xl rounded-2xl">
-          Real photos of the property needed here before launch
-        </div>
+        <img
+          src="/images/property/main.jpg"
+          alt="Aerial view of the waterfront property on the Tamar River"
+          className="mx-auto mt-10 aspect-video max-w-3xl rounded-2xl object-cover shadow-lg"
+        />
+        <Link href="/book" className="btn-primary mt-8 inline-block">
+          Enquire to book
+        </Link>
       </section>
 
       {/* Overview */}
@@ -45,9 +69,11 @@ export default function Home() {
           <div className="mt-12 grid gap-8 sm:grid-cols-2">
             {dwellings.map((d) => (
               <div key={d.slug} className="overflow-hidden rounded-2xl bg-sand-50 shadow-sm">
-                <div className="photo-placeholder aspect-[4/3]">
-                  Photo of {d.name.toLowerCase()} needed
-                </div>
+                <img
+                  src={dwellingPhotos[d.slug]}
+                  alt={d.name}
+                  className="aspect-[4/3] w-full object-cover"
+                />
                 <div className="p-8">
                   <h3 className="font-display text-2xl text-ink-900">{d.name}</h3>
                   <p className="mt-3 text-ink-700">{d.blurb}</p>
@@ -60,6 +86,24 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section className="mx-auto max-w-5xl px-6 py-20 sm:px-10">
+        <p className="eyebrow text-center">A closer look</p>
+        <h2 className="mt-3 text-center font-display text-3xl text-ink-900">
+          Life on the water
+        </h2>
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {galleryPhotos.map((p) => (
+            <img
+              key={p.src}
+              src={p.src}
+              alt={p.alt}
+              className="aspect-square w-full rounded-xl object-cover"
+            />
+          ))}
         </div>
       </section>
 
@@ -106,7 +150,7 @@ export default function Home() {
         <div className="mt-10 overflow-x-auto">
           <table className="w-full min-w-[560px] border-collapse text-left text-sm">
             <thead>
-              <tr className="border-b border-sand-200 text-ink-900">
+              <tr className="border-b-2 border-bay-300 text-ink-900">
                 <th className="py-3 pr-4 font-display text-base font-normal">Season</th>
                 <th className="py-3 pr-4 font-display text-base font-normal">Whole property</th>
                 <th className="py-3 pr-4 font-display text-base font-normal">Secondary dwelling</th>
@@ -115,7 +159,7 @@ export default function Home() {
             </thead>
             <tbody>
               {rates.map((r) => (
-                <tr key={r.season} className="border-b border-sand-200 text-ink-700">
+                <tr key={r.season} className="border-b border-bay-100 text-ink-700">
                   <td className="py-3 pr-4">
                     {r.season}
                     <span className="block text-xs text-ink-700/70">{r.when}</span>
@@ -129,6 +173,11 @@ export default function Home() {
           </table>
         </div>
         <p className="mt-6 text-center text-sm text-ink-700/70">{ratesNote}</p>
+        <div className="mt-10 text-center">
+          <Link href="/book" className="btn-primary">
+            Enquire to book
+          </Link>
+        </div>
       </section>
 
       {/* Location */}

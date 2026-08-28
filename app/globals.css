@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  /* Tamar River waterfront palette — tide blue, timber sand, ember accent */
+  /* Tamar River waterfront palette — tide blue, bay turquoise (from the
+     actual river water in the property photos), timber sand, ember accent */
   --color-sand-50: #faf7f2;
   --color-sand-100: #f1ead9;
   --color-sand-200: #e2d3b4;
@@ -10,6 +11,12 @@
   --color-tide-500: #2c6e82;
   --color-tide-700: #1c4a58;
   --color-tide-900: #12313c;
+
+  --color-bay-100: #dcf1f3;
+  --color-bay-300: #8fd0d9;
+  --color-bay-400: #4fb3c2;
+  --color-bay-500: #2894a6;
+  --color-bay-700: #1a6673;
 
   --color-ember-400: #e08a4f;
   --color-ember-500: #d1712f;
@@ -63,6 +70,21 @@
     font-size: 0.75rem;
     text-align: center;
     padding: 1rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    border-radius: 9999px;
+    background-color: var(--color-bay-500);
+    color: var(--color-sand-50);
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.75rem 1.75rem;
+    transition: background-color 150ms ease;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-bay-700);
   }
 }
 
