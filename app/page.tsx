@@ -75,8 +75,7 @@ export default function Home() {
       <section className="mx-auto grid max-w-5xl gap-10 px-6 py-14 sm:px-10 sm:grid-cols-[2fr_3fr]">
         <div>
           <p className="eyebrow">The property</p>
-          <p className="mt-3 font-display text-6xl text-timber-500">{overview.landSize}</p>
-          <p className="mt-1 text-sm text-ink-700">of waterfront on the Tamar River</p>
+          <p className="mt-3 font-display text-6xl text-timber-500">Welcome</p>
         </div>
         <p className="border-l border-brass-400 pl-6 text-lg text-ink-700 sm:pl-10">
           {overview.positioning}
