@@ -114,6 +114,48 @@ export const nearby = {
   },
 };
 
+// Real, currently-operating attractions in the Tamar Valley / Beauty Point
+// area, sourced from tamarvalley.com.au and general web search (28 August
+// 2026) — not from the business plan documents. Travel times are quoted
+// from those sources, not independently measured.
+export const attractions = [
+  {
+    name: "Garden Island lookout",
+    distance: "At Clarence Point",
+    blurb:
+      "A short walk from the property — a barren lookout point at the mouth of the Tamar River with good fishing and river views.",
+  },
+  {
+    name: "Seahorse World & Platypus House",
+    distance: "~10 min drive, Beauty Point",
+    blurb:
+      "A working seahorse farm and a chance to see platypus and echidna up close — both open daily, year-round.",
+  },
+  {
+    name: "Beaconsfield Mine & Heritage Centre",
+    distance: "~20 min drive",
+    blurb: "An indoor heritage attraction telling the story of the historic Beaconsfield gold mine.",
+  },
+  {
+    name: "Narawntapu National Park",
+    distance: "~20–40 min drive",
+    blurb:
+      "Coastal heath, wetlands and free-ranging wildlife (kangaroos, wallabies, wombats), with the West Head Lookout an easy 270 m walk from the car park.",
+  },
+  {
+    name: "Cataract Gorge, Launceston",
+    distance: "~47 min drive",
+    blurb: "One of Tasmania's best-known natural landmarks, with walking trails, a chairlift and swimming pool.",
+  },
+];
+
+// No guests have stayed yet — the business plan's own revenue modelling is
+// a launch-year projection, not a track record. Do not add quotes here
+// until real guest reviews exist; this status line should be replaced with
+// real testimonials once the property has hosted its first season.
+export const reviewsStatus =
+  "The Grahams is preparing to welcome its first guests. Real reviews will appear here once the property has hosted its first season.";
+
 export const managedBy = {
   name: "Keystone Property Group",
   note: "Bookings, cleaning turnaround and guest communication are managed centrally by Keystone Property Group.",

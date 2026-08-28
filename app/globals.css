@@ -1,28 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* Tamar River waterfront palette — tide blue, bay turquoise (from the
-     actual river water in the property photos), timber sand, ember accent */
-  --color-sand-50: #faf7f2;
-  --color-sand-100: #f1ead9;
-  --color-sand-200: #e2d3b4;
+  /* Timber-lodge palette, drawn from the actual pine-panelled interiors and
+     brass fittings in the property photos — deliberately distinct from
+     Constellation Apartments' coastal sand/ocean palette. */
+  --color-paper-50: #f8f4ea;
+  --color-paper-100: #ede0c4;
+  --color-paper-200: #ddc99a;
 
-  --color-tide-400: #4a8fa3;
-  --color-tide-500: #2c6e82;
-  --color-tide-700: #1c4a58;
-  --color-tide-900: #12313c;
+  --color-charcoal-700: #40372c;
+  --color-charcoal-900: #221d18;
 
-  --color-bay-100: #dcf1f3;
-  --color-bay-300: #8fd0d9;
-  --color-bay-400: #4fb3c2;
-  --color-bay-500: #2894a6;
-  --color-bay-700: #1a6673;
+  --color-timber-400: #b3814f;
+  --color-timber-500: #8a5a34;
+  --color-timber-700: #5f3c22;
 
-  --color-ember-400: #e08a4f;
-  --color-ember-500: #d1712f;
-  --color-ember-600: #b25a21;
+  --color-brass-400: #c99a52;
+  --color-brass-500: #a9772f;
+  --color-brass-600: #8c5f22;
 
-  --color-gum-500: #7c9070;
+  --color-moss-500: #5c6b45;
 
   --color-ink-900: #1e2422;
   --color-ink-700: #4a504c;
@@ -39,15 +36,15 @@
   }
 
   body {
-    background-color: var(--color-sand-50);
+    background-color: var(--color-paper-50);
     color: var(--color-ink-900);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
 
   ::selection {
-    background-color: var(--color-ember-400);
-    color: var(--color-sand-50);
+    background-color: var(--color-brass-400);
+    color: var(--color-charcoal-900);
   }
 }
 
@@ -57,7 +54,7 @@
     letter-spacing: var(--tracking-wide-plus);
     text-transform: uppercase;
     font-weight: 500;
-    color: var(--color-ember-600);
+    color: var(--color-brass-600);
   }
 
   /* Placeholder block for imagery we don't have real photos for yet. */
@@ -65,26 +62,46 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-sand-200);
+    background-color: var(--color-paper-200);
     color: var(--color-ink-700);
     font-size: 0.75rem;
     text-align: center;
     padding: 1rem;
   }
 
+  /* Framed-photo treatment — a cream mat and thin brass hairline, square
+     corners, standing in deliberate contrast to Constellation Apartments'
+     soft rounded photo cards. */
+  .photo-frame {
+    display: block;
+    background-color: var(--color-paper-50);
+    padding: 0.4rem;
+    border: 1px solid var(--color-brass-500);
+    box-shadow: 0 10px 24px -10px rgba(34, 29, 24, 0.35);
+  }
+
+  .photo-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .btn-primary {
     display: inline-block;
-    border-radius: 9999px;
-    background-color: var(--color-bay-500);
-    color: var(--color-sand-50);
+    background-color: var(--color-charcoal-900);
+    color: var(--color-paper-50);
+    border: 1px solid var(--color-brass-500);
     font-size: 0.875rem;
     font-weight: 500;
+    letter-spacing: 0.02em;
     padding: 0.75rem 1.75rem;
-    transition: background-color 150ms ease;
+    transition: background-color 150ms ease, color 150ms ease;
   }
 
   .btn-primary:hover {
-    background-color: var(--color-bay-700);
+    background-color: var(--color-brass-500);
+    color: var(--color-charcoal-900);
   }
 }
 

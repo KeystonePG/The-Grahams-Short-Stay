@@ -1,11 +1,13 @@
 import Link from "next/link";
 import {
+  attractions,
   dwellings,
   nearby,
   overview,
   propertyFeatures,
   rates,
   ratesNote,
+  reviewsStatus,
   site,
   targetGuests,
 } from "@/lib/content";
@@ -20,7 +22,7 @@ const dwellingPhotos: Record<string, string> = {
 };
 
 const galleryPhotos = [
-  { src: "/images/property/image10.jpg", alt: "Enclosed sunroom looking over the Tamar River" },
+  { src: "/images/property/image10.jpg", alt: "Enclosed sunroom looking over the Tamar River", big: true },
   { src: "/images/property/image6.jpg", alt: "Kitchen in the main residence" },
   { src: "/images/property/image20.jpg", alt: "Living area with water views" },
   { src: "/images/property/image14.jpg", alt: "Bedroom in the main residence" },
@@ -31,55 +33,65 @@ const galleryPhotos = [
 export default function Home() {
   return (
     <>
-      {/* Hero */}
-      <section className="bg-tide-900 px-6 py-24 text-center text-sand-50 sm:px-10">
-        <p className="eyebrow text-ember-400">{site.address}</p>
-        <h1 className="mt-4 font-display text-5xl leading-tight sm:text-6xl">
-          {site.name}
-        </h1>
-        <p className="mx-auto mt-4 max-w-xl text-lg text-sand-100">
-          {site.tagline}
-        </p>
+      {/* Hero — full-bleed image, asymmetric text block bottom-left */}
+      <section className="relative flex min-h-[85vh] items-end overflow-hidden bg-charcoal-900">
         <img
           src="/images/property/main.jpg"
           alt="Aerial view of the waterfront property on the Tamar River"
-          className="mx-auto mt-10 aspect-video max-w-3xl rounded-2xl object-cover shadow-lg"
+          className="absolute inset-0 h-full w-full object-cover opacity-60"
         />
-        <Link href="/book" className="btn-primary mt-8 inline-block">
-          Enquire to book
-        </Link>
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900 via-charcoal-900/20 to-transparent" />
+        <div className="relative max-w-2xl px-6 pb-16 sm:px-10 sm:pb-24">
+          <p className="eyebrow text-brass-400">{site.address}</p>
+          <h1 className="mt-4 font-display text-5xl leading-tight text-paper-50 sm:text-6xl">
+            {site.name}
+          </h1>
+          <p className="mt-4 max-w-md text-lg text-paper-100">{site.tagline}</p>
+          <Link href="/book" className="btn-primary mt-8 inline-block">
+            Enquire to book
+          </Link>
+        </div>
       </section>
 
-      {/* Overview */}
-      <section className="mx-auto max-w-3xl px-6 py-20 text-center sm:px-10">
-        <p className="eyebrow">The property</p>
-        <h2 className="mt-3 font-display text-3xl text-ink-900">
-          {overview.landSize} of waterfront on the Tamar River
-        </h2>
-        <p className="mt-4 text-ink-700">{overview.positioning}</p>
+      {/* Overview — asymmetric two-column */}
+      <section className="mx-auto grid max-w-5xl gap-10 px-6 py-24 sm:px-10 sm:grid-cols-[2fr_3fr]">
+        <div>
+          <p className="eyebrow">The property</p>
+          <p className="mt-3 font-display text-6xl text-timber-500">{overview.landSize}</p>
+          <p className="mt-1 text-sm text-ink-700">of waterfront on the Tamar River</p>
+        </div>
+        <p className="border-l border-brass-400 pl-6 text-lg text-ink-700 sm:pl-10">
+          {overview.positioning}
+        </p>
       </section>
 
-      {/* Dwellings */}
-      <section id="dwellings" className="bg-sand-100 px-6 py-24 sm:px-10">
+      {/* Dwellings — zig-zag editorial rows */}
+      <section id="dwellings" className="border-t border-paper-200 px-6 py-24 sm:px-10">
         <div className="mx-auto max-w-5xl">
-          <p className="eyebrow text-center">Two homes, one title</p>
-          <h2 className="mt-3 text-center font-display text-3xl text-ink-900">
+          <p className="eyebrow">Two homes, one title</p>
+          <h2 className="mt-3 font-display text-3xl text-ink-900">
             The main residence &amp; the secondary dwelling
           </h2>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2">
-            {dwellings.map((d) => (
-              <div key={d.slug} className="overflow-hidden rounded-2xl bg-sand-50 shadow-sm">
-                <img
-                  src={dwellingPhotos[d.slug]}
-                  alt={d.name}
-                  className="aspect-[4/3] w-full object-cover"
-                />
-                <div className="p-8">
+          <div className="mt-16 space-y-20">
+            {dwellings.map((d, i) => (
+              <div
+                key={d.slug}
+                className={`flex flex-col gap-10 sm:items-center ${
+                  i % 2 === 1 ? "sm:flex-row-reverse" : "sm:flex-row"
+                }`}
+              >
+                <div className="photo-frame aspect-[4/3] w-full sm:w-3/5">
+                  <img src={dwellingPhotos[d.slug]} alt={d.name} />
+                </div>
+                <div className="sm:w-2/5">
                   <h3 className="font-display text-2xl text-ink-900">{d.name}</h3>
                   <p className="mt-3 text-ink-700">{d.blurb}</p>
-                  <ul className="mt-4 space-y-1 text-sm text-ink-700">
+                  <ul className="mt-4 space-y-1.5 text-sm text-ink-700">
                     {d.features.map((f) => (
-                      <li key={f}>{f}</li>
+                      <li key={f} className="flex items-start gap-2">
+                        <span className="mt-1.5 h-1 w-3 shrink-0 bg-brass-500" />
+                        {f}
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -89,99 +101,121 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Gallery */}
-      <section className="mx-auto max-w-5xl px-6 py-20 sm:px-10">
-        <p className="eyebrow text-center">A closer look</p>
-        <h2 className="mt-3 text-center font-display text-3xl text-ink-900">
-          Life on the water
-        </h2>
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
-          {galleryPhotos.map((p) => (
-            <img
-              key={p.src}
-              src={p.src}
-              alt={p.alt}
-              className="aspect-square w-full rounded-xl object-cover"
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* Property features */}
-      <section className="mx-auto max-w-3xl px-6 py-20 sm:px-10">
-        <p className="eyebrow text-center">On the property</p>
-        <h2 className="mt-3 text-center font-display text-3xl text-ink-900">
-          Room to spread out
-        </h2>
-        <ul className="mx-auto mt-10 grid max-w-xl gap-x-8 gap-y-3 text-ink-700 sm:grid-cols-2">
-          {propertyFeatures.map((f) => (
-            <li key={f} className="flex items-start gap-3">
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ember-500" />
-              {f}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Who it's for */}
-      <section className="bg-sand-100 px-6 py-20 sm:px-10">
-        <div className="mx-auto max-w-4xl">
-          <p className="eyebrow text-center">Who stays here</p>
-          <h2 className="mt-3 text-center font-display text-3xl text-ink-900">
-            Groups, families and couples
-          </h2>
-          <div className="mt-10 grid gap-8 sm:grid-cols-2">
-            {targetGuests.map((g) => (
-              <div key={g.title} className="rounded-2xl bg-sand-50 p-6">
-                <h3 className="font-display text-xl text-ink-900">{g.title}</h3>
-                <p className="mt-2 text-ink-700">{g.blurb}</p>
+      {/* Gallery — asymmetric collage grid */}
+      <section className="border-t border-paper-200 px-6 py-24 sm:px-10">
+        <div className="mx-auto max-w-5xl">
+          <p className="eyebrow">A closer look</p>
+          <h2 className="mt-3 font-display text-3xl text-ink-900">Life on the water</h2>
+          <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-4">
+            {galleryPhotos.map((p) => (
+              <div
+                key={p.src}
+                className={`photo-frame aspect-square ${
+                  p.big ? "col-span-2 row-span-2 aspect-square sm:aspect-auto" : ""
+                }`}
+              >
+                <img src={p.src} alt={p.alt} />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Rates */}
-      <section id="rates" className="mx-auto max-w-4xl px-6 py-24 sm:px-10">
-        <p className="eyebrow text-center">Launch rates</p>
-        <h2 className="mt-3 text-center font-display text-3xl text-ink-900">
-          Seasonal rate card
-        </h2>
-        <div className="mt-10 overflow-x-auto">
-          <table className="w-full min-w-[560px] border-collapse text-left text-sm">
-            <thead>
-              <tr className="border-b-2 border-bay-300 text-ink-900">
-                <th className="py-3 pr-4 font-display text-base font-normal">Season</th>
-                <th className="py-3 pr-4 font-display text-base font-normal">Whole property</th>
-                <th className="py-3 pr-4 font-display text-base font-normal">Secondary dwelling</th>
-                <th className="py-3 font-display text-base font-normal">Min. stay</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rates.map((r) => (
-                <tr key={r.season} className="border-b border-bay-100 text-ink-700">
-                  <td className="py-3 pr-4">
-                    {r.season}
-                    <span className="block text-xs text-ink-700/70">{r.when}</span>
-                  </td>
-                  <td className="py-3 pr-4">{r.whole}/night</td>
-                  <td className="py-3 pr-4">{r.secondary}/night</td>
-                  <td className="py-3">{r.minStay}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {/* Property features — ledger list */}
+      <section className="border-t border-paper-200 px-6 py-24 sm:px-10">
+        <div className="mx-auto max-w-3xl">
+          <p className="eyebrow">On the property</p>
+          <h2 className="mt-3 font-display text-3xl text-ink-900">Room to spread out</h2>
+          <ul className="mt-10 divide-y divide-paper-200 border-y border-paper-200">
+            {propertyFeatures.map((f) => (
+              <li key={f} className="border-l-2 border-brass-500 py-4 pl-6 text-ink-700">
+                {f}
+              </li>
+            ))}
+          </ul>
         </div>
-        <p className="mt-6 text-center text-sm text-ink-700/70">{ratesNote}</p>
-        <div className="mt-10 text-center">
-          <Link href="/book" className="btn-primary">
-            Enquire to book
-          </Link>
+      </section>
+
+      {/* Who it's for — split with divider */}
+      <section className="border-t border-paper-200 px-6 py-24 sm:px-10">
+        <div className="mx-auto max-w-4xl">
+          <p className="eyebrow">Who stays here</p>
+          <h2 className="mt-3 font-display text-3xl text-ink-900">Groups, families and couples</h2>
+          <div className="mt-12 grid gap-10 sm:grid-cols-2 sm:divide-x sm:divide-paper-200">
+            {targetGuests.map((g) => (
+              <div key={g.title} className="sm:first:pr-10 sm:last:pl-10">
+                <h3 className="font-display text-xl text-timber-500">{g.title}</h3>
+                <p className="mt-3 text-ink-700">{g.blurb}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Rates — rate sheet, not a card grid */}
+      <section id="rates" className="border-t border-paper-200 px-6 py-24 sm:px-10">
+        <div className="mx-auto max-w-3xl">
+          <p className="eyebrow text-center">Launch rates</p>
+          <h2 className="mt-3 text-center font-display text-3xl text-ink-900">Seasonal rate card</h2>
+          <div className="mt-12 divide-y-2 divide-paper-200 border-y-2 border-charcoal-900">
+            {rates.map((r) => (
+              <div key={r.season} className="flex flex-col gap-3 py-6 sm:flex-row sm:items-baseline sm:justify-between">
+                <div>
+                  <p className="font-display text-xl text-ink-900">{r.season}</p>
+                  <p className="text-xs text-ink-700/70">{r.when}</p>
+                </div>
+                <div className="flex flex-wrap gap-x-8 gap-y-1 text-sm sm:justify-end">
+                  <span>
+                    <span className="font-display text-lg text-timber-500">{r.whole}</span>
+                    <span className="text-ink-700"> /night whole property</span>
+                  </span>
+                  <span>
+                    <span className="font-display text-lg text-timber-500">{r.secondary}</span>
+                    <span className="text-ink-700"> /night secondary dwelling</span>
+                  </span>
+                </div>
+                <p className="text-xs text-ink-700/70 sm:basis-full sm:text-right">{r.minStay}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-center text-sm text-ink-700/70">{ratesNote}</p>
+          <div className="mt-10 text-center">
+            <Link href="/book" className="btn-primary">
+              Enquire to book
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials — honest placeholder, no invented reviews */}
+      <section className="border-t border-paper-200 bg-charcoal-900 px-6 py-24 text-center text-paper-100 sm:px-10">
+        <p className="eyebrow text-brass-400">Guest reviews</p>
+        <p className="mx-auto mt-6 max-w-lg font-display text-2xl leading-relaxed text-paper-50">
+          &ldquo;{reviewsStatus}&rdquo;
+        </p>
+      </section>
+
+      {/* Nearby attractions */}
+      <section className="border-t border-paper-200 px-6 py-24 sm:px-10">
+        <div className="mx-auto max-w-4xl">
+          <p className="eyebrow text-center">Beyond the property</p>
+          <h2 className="mt-3 text-center font-display text-3xl text-ink-900">
+            Exploring the Tamar Valley
+          </h2>
+          <div className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+            {attractions.map((a) => (
+              <div key={a.name} className="border-l-2 border-brass-500 pl-5">
+                <p className="font-display text-lg text-ink-900">{a.name}</p>
+                <p className="eyebrow mt-1 text-ink-700/70">{a.distance}</p>
+                <p className="mt-2 text-sm text-ink-700">{a.blurb}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Location */}
-      <section id="location" className="bg-sand-100 px-6 py-20 sm:px-10">
+      <section id="location" className="border-t border-paper-200 bg-paper-100 px-6 py-20 sm:px-10">
         <div className="mx-auto max-w-3xl text-center">
           <p className="eyebrow">Getting here</p>
           <h2 className="mt-3 font-display text-3xl text-ink-900">Clarence Point, Tamar Valley</h2>

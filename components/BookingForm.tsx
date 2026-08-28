@@ -4,7 +4,7 @@ import { useState } from "react";
 import { contact, site } from "@/lib/content";
 
 const inputClass =
-  "w-full rounded-lg border border-sand-200 bg-sand-50 px-4 py-2.5 text-ink-900 outline-none transition focus:border-bay-500";
+  "w-full border border-paper-200 bg-paper-50 px-4 py-2.5 text-ink-900 outline-none transition focus:border-brass-500";
 
 export default function BookingForm() {
   const [sent, setSent] = useState(false);
