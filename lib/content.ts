@@ -177,6 +177,19 @@ export const foodAndWine = [
   },
 ];
 
+// Real, verified local events — dates confirmed directly from the event's
+// own site (28 August 2026). Only including events with a confirmed
+// upcoming date; unconfirmed ones (e.g. George Town's NYE event) are left
+// out rather than guessed at.
+export const events = [
+  {
+    name: "Tamar Valley Folk Festival",
+    when: "15–17 January 2027",
+    blurb: "Concerts, workshops and community events held in and around George Town, about 3km away.",
+    url: "https://tamarvalleyfolkfestival.com/",
+  },
+];
+
 // No guests have stayed yet — the business plan's own revenue modelling is
 // a launch-year projection, not a track record. Do not add quotes here
 // until real guest reviews exist; this status line should be replaced with

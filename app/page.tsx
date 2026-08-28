@@ -3,6 +3,7 @@ import Weather from "@/components/Weather";
 import {
   attractions,
   dwellings,
+  events,
   foodAndWine,
   nearby,
   overview,
@@ -235,6 +236,29 @@ export default function Home() {
                 <p className="font-display text-lg text-ink-900">{f.name}</p>
                 <p className="mt-2 text-sm text-ink-700">{f.blurb}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Local events */}
+      <section className="border-t border-paper-200 px-6 py-14 sm:px-10">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="eyebrow">What's on</p>
+          <h2 className="mt-3 font-display text-3xl text-ink-900">Local events</h2>
+          <div className="mt-8 space-y-6">
+            {events.map((e) => (
+              <a
+                key={e.name}
+                href={e.url}
+                target="_blank"
+                rel="noreferrer"
+                className="block border border-paper-200 p-6 text-left transition hover:border-brass-500"
+              >
+                <p className="eyebrow text-brass-600">{e.when}</p>
+                <p className="mt-1 font-display text-xl text-ink-900">{e.name}</p>
+                <p className="mt-2 text-sm text-ink-700">{e.blurb}</p>
+              </a>
             ))}
           </div>
         </div>
